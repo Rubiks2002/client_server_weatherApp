@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(function(){
+        $("#callAjax").click(function() {
+        var cityName = $.trim($("#cityName").val())
+
+        if (cityName.length > 0) {
+            $.getJSON({url: `/fetchWeather/${ cityName }`,})
+            .done(function( weather ){
+                $("#content").html(weather.temp)
+            })
+        }
+    });
+    });
+
+
+    </script>
+</head>
+<body>
+    <input type="text" id="cityName" name="cityName" value="" />
+    <br>
+    <input id="callAjax" type="button" value="Submit" />
+    <br><br>
+    <div id="content">
+
+    </div>
+</body>
